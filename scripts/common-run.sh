@@ -208,7 +208,7 @@ postfix_setup_relayhost() {
 postfix_setup_xoauth2_pre_setup() {
 	file_env 'XOAUTH2_CLIENT_ID'
 	file_env 'XOAUTH2_SECRET'
-	file env 'XOAUTH2_TENANT_ID'
+	#file env 'XOAUTH2_TENANT_ID'
 	if [ -n "$XOAUTH2_CLIENT_ID" ] && [ -n "$XOAUTH2_SECRET" ]; then
 		cat <<EOF > /etc/sasl-xoauth2.conf
 {
@@ -270,18 +270,10 @@ postfix_setup_debugging() {
 		notice "Enabling additional debbuging for: ${emphasis}$POSTFIX_mynetworks${reset}, as INBOUND_DEBUGGING=''${INBOUND_DEBUGGING}''"
 		do_postconf -e "debug_peer_list=$POSTFIX_mynetworks"
 
-		sed -i -E 's/^[ \t]*#?[ \t]*LogWhy[ \t]*.+$/LogWhy                  yes/' /etc/opendkim/opendkim.conf
-		if ! egrep -q '^LogWhy' /etc/opendkim/opendkim.conf; then
-			echo >> /etc/opendkim/opendkim.conf
-			echo "LogWhy                  yes" >> /etc/opendkim/opendkim.conf
-		fi
+		
 	else
 		info "Debugging is disabled.${reset}"
-		sed -i -E 's/^[ \t]*#?[ \t]*LogWhy[ \t]*.+$/LogWhy                  no/' /etc/opendkim/opendkim.conf
-		if ! egrep -q '^LogWhy' /etc/opendkim/opendkim.conf; then
-			echo >> /etc/opendkim/opendkim.conf
-			echo "LogWhy                  no" >> /etc/opendkim/opendkim.conf
-		fi
+	
 	fi
 }
 

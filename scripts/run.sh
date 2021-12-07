@@ -27,9 +27,7 @@ postfix_setup_debugging             # Enable debugging, if defined
 postfix_setup_sender_domains        # Configure allowed sender domains
 postfix_setup_masquarading          # Setup masquaraded domains
 postfix_setup_header_checks         # Enable SMTP header checks, if defined
-
 postfix_custom_commands             # Apply custom postfix settings
-
 postfix_open_submission_port        # Enable the submission port
 execute_post_init_scripts           # Execute any scripts found in /docker-init.db/
 unset_sensible_variables            # Remove environment variables that contains sensible values (secrets) that are read from conf files

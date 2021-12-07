@@ -46,7 +46,7 @@ COPY       /configs/smtp_header_checks   /etc/postfix/smtp_header_checks
 COPY       /scripts/*.sh                 /
 
 # Set up volumes
-VOLUME     [ "/var/spool/postfix", "/etc/postfix", "/etc/opendkim/keys" ]
+VOLUME     [ "/var/spool/postfix", "/etc/postfix" ]
 
 # Run supervisord
 USER       root
