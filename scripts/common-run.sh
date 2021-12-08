@@ -207,13 +207,13 @@ postfix_setup_relayhost() {
 
 postfix_setup_xoauth2_pre_setup() {
 	file_env 'XOAUTH2_CLIENT_ID'
-	file_env 'XOAUTH2_SECRET'
+	#file_env 'XOAUTH2_SECRET'
 	#file env 'XOAUTH2_TENANT_ID'
-	if [ -n "$XOAUTH2_CLIENT_ID" ] && [ -n "$XOAUTH2_SECRET" ]; then
+	if [ -n "$XOAUTH2_CLIENT_ID" ] && [ -n "$XOAUTH2_TENANT_ID" ]; then
 		cat <<EOF > /etc/sasl-xoauth2.conf
 {
   "client_id": "${XOAUTH2_CLIENT_ID}",
-  "client_secret": "${XOAUTH2_SECRET}",
+  "client_secret": "",
   "token_endpoint": "https://login.microsoftonline.com/${XOAUTH2_TENANT_ID}/oauth2/v2.0/token",
   "log_to_syslog_on_failure": "${XOAUTH2_SYSLOG_ON_FAILURE:-no}",
   "log_full_trace_on_failure": "${XOAUTH2_FULL_TRACE:-no}"
